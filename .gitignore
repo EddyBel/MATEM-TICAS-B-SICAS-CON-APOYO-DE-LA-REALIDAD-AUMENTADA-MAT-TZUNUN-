@@ -1,0 +1,18 @@
+Backend/env
+__pycache__/
+
+
+MAT-TZUNUN/node_modules/
+MAT-TZUNUN/.expo/
+MAT-TZUNUN/dist/
+MAT-TZUNUN/npm-debug.*
+MAT-TZUNUN/*.jks
+MAT-TZUNUN/*.p8
+MAT-TZUNUN/*.p12
+MAT-TZUNUN/*.key
+MAT-TZUNUN/*.mobileprovision
+MAT-TZUNUN/*.orig.*
+MAT-TZUNUN/web-build/
+
+# macOS
+.DS_Store
