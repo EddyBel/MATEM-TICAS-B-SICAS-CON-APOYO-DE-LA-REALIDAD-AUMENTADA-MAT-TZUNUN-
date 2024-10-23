@@ -8,3 +8,4 @@ db_port = os.environ.get('MYSQL_PORT', '3306')
 
 env = os.environ.get('ENV', 'development')
 debug_mode = True if env == 'development' else False
+openai_api_key = os.environ.get('OPENAI_APIKEY', "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")

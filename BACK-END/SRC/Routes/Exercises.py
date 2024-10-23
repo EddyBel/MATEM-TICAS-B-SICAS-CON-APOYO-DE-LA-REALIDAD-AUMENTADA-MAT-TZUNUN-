@@ -3,6 +3,7 @@ from SRC.Core.OpenAi import MattzunuIA
 from SRC.app import db
 from SRC.DB.Modelos import Exercises, exercises_schema, exercise_schema
 from datetime import datetime
+from Config import openai_api_key
 
 exercisesRoutes = Blueprint('exercises', __name__)
 
@@ -10,7 +11,7 @@ exercisesRoutes = Blueprint('exercises', __name__)
 @exercisesRoutes.route('/exercises/<int:user_id>', methods=['POST'])
 def CREATE_EXERCISE(user_id):
     try:
-        mattzunu = MattzunuIA(api_key="xxxxxxxxxxxxxxxxxx")
+        mattzunu = MattzunuIA(api_key=openai_api_key)
         data = mattzunu.generate_exercise(level=1)
 
         if (data is None):

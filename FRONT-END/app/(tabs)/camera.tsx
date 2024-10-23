@@ -91,7 +91,7 @@ function SceneBasic() {
 // Componente principal de la aplicación
 export default function App() {
   const { apples, setApples, addApples, removeApples } = useGlobalContext();
-  const [numbers, setNumbers] = useState([1, 3]);
+  const [numbers, setNumbers] = useState(null);
   const [level, setLevel] = useState(0);
   const [operation, setOperation] = useState("suma");
   const [id, setId] = useState(0);
@@ -99,32 +99,34 @@ export default function App() {
   const [exercise, setExercise] = useState();
   const [lastResolved, setLastResolved] = useState(false);
   const [idUser, setIdUser] = useState(1);
+  const [loadEvaluation, setLoadEvaluation] = useState(false);
 
   async function sendResponse() {
-    console.log("sendResponse");
-    console.log(id);
-    console.log(apples);
-    console.log("sendResponse");
-    const response = await postEvaluationResponse(id, apples);
-    console.log(response);
-    setMessage(response.message);
-    const resolved = response.resolved;
+    setLoadEvaluation(true);
+    if (id) {
+      const response = await postEvaluationResponse(id, apples);
+      console.log(response);
+      setMessage(response.message);
+      const resolved = response.resolved;
+      setLoadEvaluation(false);
 
-    if (resolved) {
-      setLastResolved(true);
-      const updateExercise = await putResolveExercise(id);
-      const prediction = await predictEvaluation(idUser);
-      const responseProgress = await postUpdateProgress(idUser, level);
-      console.log(updateExercise);
-      console.log(responseProgress);
-      console.log(prediction);
+      if (resolved) {
+        setLastResolved(true);
+        const updateExercise = await putResolveExercise(id);
+        const prediction = await predictEvaluation(idUser);
+        const responseProgress = await postUpdateProgress(idUser, level);
+        console.log(updateExercise);
+        console.log(responseProgress);
+        console.log(prediction);
 
-      // if () {
-      //   const predict = await predictEvaluation(idUser);
-      //   const newPredict = predict.predict;
-      //   console.log("Prediccion", newPredict);
-      // }
+        // if () {
+        //   const predict = await predictEvaluation(idUser);
+        //   const newPredict = predict.predict;
+        //   console.log("Prediccion", newPredict);
+        // }
+      }
     }
+    setLoadEvaluation(false);
   }
 
   function generateExercise() {
@@ -149,8 +151,7 @@ export default function App() {
   function operatorString() {
     if (operation === "suma") return "+";
     if (operation === "resta") return "-";
-    if (operation === "multiplicacion") return "x";
-    if (operation === "division") return "/";
+    if (operation === null) return "";
   }
 
   useEffect(() => {
@@ -167,6 +168,17 @@ export default function App() {
     }, 3000);
   }, [message]);
 
+  function States() {
+    if (numbers === null) {
+      return "Cargando ...";
+    }
+    if (loadEvaluation) {
+      return "Evaluando ...";
+    } else {
+      return `${numbers[0]} ${operatorString()} ${numbers[1]}`;
+    }
+  }
+
   return (
     <View className="flex-1 relative">
       <ViroARSceneNavigator initialScene={{ scene: SceneBasic }} />
@@ -175,9 +187,7 @@ export default function App() {
           <Text className="text-center text-white">Nivel {level}</Text>
         </View>
         <View className="p-2 bg-green-500 rounded-xl flex-1 ml-4 justify-center">
-          <Text className="text-center text-white">
-            {numbers[0]} {operatorString()} {numbers[1]}
-          </Text>
+          <Text className="text-center text-white">{States()}</Text>
         </View>
         <View className="p-2 bg-green-500 rounded-xl flex-1 ml-4 items-center flex-row justify-center">
           <Text className="text-center text-white">{operation}</Text>
