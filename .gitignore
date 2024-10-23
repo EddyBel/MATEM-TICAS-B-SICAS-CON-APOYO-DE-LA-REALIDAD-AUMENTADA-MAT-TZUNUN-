@@ -1,18 +1,22 @@
-Backend/env
+BACK-END/env
 __pycache__/
 
-
-MAT-TZUNUN/node_modules/
-MAT-TZUNUN/.expo/
-MAT-TZUNUN/dist/
-MAT-TZUNUN/npm-debug.*
-MAT-TZUNUN/*.jks
-MAT-TZUNUN/*.p8
-MAT-TZUNUN/*.p12
-MAT-TZUNUN/*.key
-MAT-TZUNUN/*.mobileprovision
-MAT-TZUNUN/*.orig.*
-MAT-TZUNUN/web-build/
+.vscode/
+FRONT-END/package-lock.json
+FRONT-END/node_modules/
+FRONT-END/.vscode/
+FRONT-END/vscode/
+FRONT-END/.expo/
+FRONT-END/dist/
+FRONT-END/npm-debug.*
+FRONT-END/*.jks
+FRONT-END/*.p8
+FRONT-END/*.p12
+FRONT-END/*.key
+FRONT-END/*.mobileprovision
+FRONT-END/*.orig.*
+FRONT-END/web-build/
+FRONT-END/
 
 # macOS
 .DS_Store

@@ -36,4 +36,4 @@ def CREATE_PROGRESS(id_user):
     # Guardar cambios en la base de datos
     db.session.commit()
    
-    return jsonify({"message": "Success", "ejercicios": numExercises}), 201
+    return jsonify({"message": "Success", "data": numExercises}), 201

@@ -2,7 +2,7 @@ import os
 
 db_host = os.environ.get('MYSQL_HOST', 'localhost')
 db_users = os.environ.get('MYSQL_USER', 'root')
-db_password = os.environ.get('MYSQL_PASSWORD', 'liafumb')
+db_password = os.environ.get('MYSQL_PASSWORD', '54628')
 db_name = os.environ.get('MYSQL_DB', 'matzz')
 db_port = os.environ.get('MYSQL_PORT', '3306')
 
