@@ -16,7 +16,6 @@ FRONT-END/*.key
 FRONT-END/*.mobileprovision
 FRONT-END/*.orig.*
 FRONT-END/web-build/
-FRONT-END/
 
 # macOS
 .DS_Store
